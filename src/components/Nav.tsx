@@ -1,4 +1,4 @@
-import React from "react";
+import React, { FC } from "react";
 import { FaBookBookmark } from "react-icons/fa6";
 import { FaHeart } from "react-icons/fa";
 import { BsFillBasket3Fill } from "react-icons/bs";
@@ -22,7 +22,11 @@ const links = [
   },
 ];
 
-export const Nav = () => {
+type PropsType = {
+  onClick?: () => void;
+};
+
+export const Nav: FC<PropsType> = ({ onClick }) => {
   return (
     <ul className="flex justify-between flex-col md:flex-row">
       {links.map((link, i) => (
@@ -30,6 +34,7 @@ export const Nav = () => {
           href={link.link}
           className="flex items-center p-6 border-b-2 border-[#949494] md:bg-inherit md:border-0 md:flex-col md:p-3"
           key={i}
+          onClick={onClick}
         >
           <p className="text-2xl mr-[30px] text-nowrap md:text-center md:m-0">
             {link.icon}

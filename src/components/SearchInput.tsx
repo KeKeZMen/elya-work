@@ -7,7 +7,7 @@ export const SearchInput = () => {
 
   if (width && width > 768)
     return (
-      <div className="flex min-w-[50%] items-center relative">
+      <div className="flex w-[50%] items-center relative">
         <input
           type="text"
           placeholder="Я ищу..."

@@ -37,12 +37,14 @@ export const Menu = () => {
                 <RxCross1 />
               </button>
 
-              <Link href={"/"}>Главная</Link>
+              <Link href={"/"} onClick={handleMenu}>
+                Главная
+              </Link>
 
               <ThemeButton />
             </div>
 
-            <Nav />
+            <Nav onClick={handleMenu} />
           </motion.aside>
         </motion.div>
       )}

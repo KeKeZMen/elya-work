@@ -1,6 +1,5 @@
 "use client";
 
-import { Avatar, AvatarImage } from "@/components/ui/avatar";
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -11,6 +10,7 @@ import {
 } from "@/components/ui/dropdown-menu";
 import { User } from "next-auth";
 import { FC } from "react";
+import { IoPerson } from "react-icons/io5";
 
 type PropsType = {
   user: User;
@@ -20,13 +20,12 @@ type PropsType = {
 export const UserProfile: FC<PropsType> = ({ user, LogoutButton }) => {
   return (
     <DropdownMenu>
-      <DropdownMenuTrigger>
-        <Avatar className="cursor-pointer">
-          <AvatarImage src="/person.jpg" />
-        </Avatar>
+      <DropdownMenuTrigger className="flex flex-col items-center md:p-3">
+        <IoPerson className="text-2xl" />
+        {user.name}
       </DropdownMenuTrigger>
 
-      <DropdownMenuContent className="mt-3 z-[101]">
+      <DropdownMenuContent className="z-[101]">
         <DropdownMenuLabel className="font-normal p-2">
           <div className="flex flex-col space-y-1">
             <p className="text-sm font-medium leading-none">{user.name}</p>

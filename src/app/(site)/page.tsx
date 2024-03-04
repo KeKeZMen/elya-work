@@ -20,7 +20,7 @@ export default function Home() {
         </div>
       </div>
 
-      <main className="md:container h-[100dvh]" id="main">
+      <main className="md:container" id="main">
         <section></section>
       </main>
     </>

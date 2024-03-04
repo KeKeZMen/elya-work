@@ -3,6 +3,7 @@
 import AuthForm from "./AuthForm";
 import { Dialog, DialogContent } from "@/components/ui/dialog";
 import { useCallback, useState } from "react";
+import { IoMdPerson } from "react-icons/io";
 
 export const LoginButton = () => {
   const [isOpened, setIsOpened] = useState(false);
@@ -13,7 +14,8 @@ export const LoginButton = () => {
 
   return (
     <>
-      <button onClick={handleDropdown} className="flex items-center flex-col">
+      <button onClick={handleDropdown} className="flex items-center flex-col p-3">
+        <IoMdPerson className="text-2xl hidden md:block" />
         Войти
       </button>
 

@@ -14,29 +14,33 @@ export async function Header() {
   const session = await getServerSession(authOptions);
 
   return (
-    <header className="fixed top-0 w-full flex justify-between items-center p-3 bg-white bg-opacity-80 md:px-10">
-      <div className="flex gap-3">
-        <MenuButton />
+    <header className="fixed top-0 w-full p-3 bg-white bg-opacity-80 md:px-10 ">
+      <div className="flex justify-between items-center md:container ">
+        <div className="flex gap-3">
+          <MenuButton />
 
-        <Link
-          href={"/"}
-          className="flex justify-between items-center gap-2 text-3xl"
-        >
-          <FaBook />
-          <h1>Book`s</h1>
-        </Link>
-      </div>
+          <Link
+            href={"/"}
+            className="flex justify-between items-center gap-2 text-3xl"
+          >
+            <FaBook />
+            <h1>Book`s</h1>
+          </Link>
+        </div>
 
-      {session?.user ? (
-        <UserProfile user={session.user} LogoutButton={<LogoutButton />} />
-      ) : (
-        <LoginButton />
-      )}
+        <SearchInput />
 
-      <SearchInput />
+        <div className="flex items-center">
+          {session?.user ? (
+            <UserProfile user={session.user} LogoutButton={<LogoutButton />} />
+          ) : (
+            <LoginButton />
+          )}
 
-      <div className="hidden md:block">
-        <Nav />
+          <div className="hidden md:block">
+            <Nav />
+          </div>
+        </div>
       </div>
     </header>
   );
