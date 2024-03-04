@@ -1,4 +1,9 @@
 import { IoIosArrowDown } from "react-icons/io";
+import { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "Book`s | Главная"
+};
 
 export default function Home() {
   return (
