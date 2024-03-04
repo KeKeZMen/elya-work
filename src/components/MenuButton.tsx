@@ -8,7 +8,7 @@ export const MenuButton = () => {
   const { handleMenu } = useContext(MenuContext);
 
   return (
-    <button className="text-2xl" onClick={handleMenu}>
+    <button className="text-2xl md:hidden" onClick={handleMenu}>
       <GiHamburgerMenu />
     </button>
   );

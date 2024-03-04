@@ -1,6 +1,9 @@
 "use client";
 
 import { createContext, useEffect, useState } from "react";
+import { SessionProvider } from "next-auth/react";
+import { ThemeProvider } from "next-themes";
+import { Toaster } from "react-hot-toast";
 
 export const MenuContext = createContext({
   isOpenedMenu: true,
@@ -25,8 +28,13 @@ export const Providers = ({
   if (!isMounted) return <>{children}</>;
 
   return (
-    <MenuContext.Provider value={{ handleMenu, isOpenedMenu }}>
-      {children}
-    </MenuContext.Provider>
+    <SessionProvider>
+      <ThemeProvider attribute="class" defaultTheme="light">
+        <MenuContext.Provider value={{ handleMenu, isOpenedMenu }}>
+          <Toaster />
+          {children}
+        </MenuContext.Provider>
+      </ThemeProvider>
+    </SessionProvider>
   );
 };

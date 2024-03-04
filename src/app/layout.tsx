@@ -23,7 +23,7 @@ export default function RootLayout({
         <Providers>
           <Menu />
           <Header />
-          <main className="bg-black h-[100dvh]">{children}</main>
+          {children}
         </Providers>
       </body>
     </html>

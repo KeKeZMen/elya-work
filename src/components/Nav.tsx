@@ -1,16 +1,10 @@
 import React from "react";
-import { IoMdPerson } from "react-icons/io";
 import { FaBookBookmark } from "react-icons/fa6";
 import { FaHeart } from "react-icons/fa";
 import { BsFillBasket3Fill } from "react-icons/bs";
-import Link from "next/link";
+import { NavLink } from "./NavLink";
 
 const links = [
-  {
-    title: "Войти",
-    link: "",
-    icon: <IoMdPerson />,
-  },
   {
     title: "Каталог книг",
     link: "/catalog",
@@ -18,26 +12,30 @@ const links = [
   },
   {
     title: "Избранное",
-    link: "",
+    link: "/favorite",
     icon: <FaHeart />,
   },
   {
     title: "Корзина",
-    link: "",
+    link: "/cart",
     icon: <BsFillBasket3Fill />,
   },
 ];
 
 export const Nav = () => {
   return (
-    <ul>
-      {links.map((link) => (
-        <li>
-          <Link href={link.link}>
+    <ul className="flex justify-between flex-col md:flex-row">
+      {links.map((link, i) => (
+        <NavLink
+          href={link.link}
+          className="flex items-center p-6 border-b-2 border-[#949494] md:bg-inherit md:border-0 md:flex-col md:p-3"
+          key={i}
+        >
+          <p className="text-2xl mr-[30px] text-nowrap md:text-center md:m-0">
             {link.icon}
-            <p>{link.title}</p>
-          </Link>
-        </li>
+          </p>
+          <p className="text-nowrap">{link.title}</p>
+        </NavLink>
       ))}
     </ul>
   );
