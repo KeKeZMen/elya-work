@@ -1,6 +1,3 @@
-// This is your Prisma schema file,
-// learn more about it in the docs: https://pris.ly/d/prisma-schema
-
 generator client {
   provider = "prisma-client-js"
 }
@@ -12,7 +9,7 @@ datasource db {
 
 model Account {
   id                 String    @id @default(cuid())
-  userId             String
+  userId             Int
   providerType       String
   providerId         String
   providerAccountId  String
@@ -28,17 +25,18 @@ model Account {
 
 model Session {
   id           String   @id @default(cuid())
-  userId       String
+  userId       Int
   expires      DateTime
   sessionToken String   @unique
   accessToken  String   @unique
   createdAt    DateTime @default(now())
   updatedAt    DateTime @updatedAt
-  user         User     @relation(fields: [userId], references: [id])
+
+  user User @relation(fields: [userId], references: [id])
 }
 
 model User {
-  id            String    @id @default(cuid())
+  id            Int       @id @default(autoincrement())
   name          String?
   email         String?   @unique
   emailVerified DateTime?
@@ -48,6 +46,9 @@ model User {
   updatedAt     DateTime  @updatedAt
   accounts      Account[]
   sessions      Session[]
+
+  favorites Favorite[]
+  orders    Order[]
 }
 
 model VerificationRequest {
@@ -59,4 +60,51 @@ model VerificationRequest {
   updatedAt  DateTime @updatedAt
 
   @@unique([identifier, token])
+}
+
+model Author {
+  id   Int    @id @default(autoincrement())
+  name String
+
+  books Book[]
+}
+
+model Book {
+  id          Int    @id @default(autoincrement())
+  name        String
+  description String
+  authorId    Int
+  image       String
+
+  author    Author      @relation(fields: [id], references: [id])
+  favorite  Favorite[]
+  OrderItem OrderItem[]
+}
+
+model Favorite {
+  id     Int @id @default(autoincrement())
+  bookId Int
+  userId Int
+
+  book Book @relation(fields: [bookId], references: [id])
+  user User @relation(fields: [userId], references: [id])
+}
+
+model OrderItem {
+  id      Int @id @default(autoincrement())
+  orderId Int
+  bookId  Int
+
+  order Order @relation(fields: [orderId], references: [id])
+  book  Book  @relation(fields: [bookId], references: [id])
+}
+
+model Order {
+  id        Int      @id @default(autoincrement())
+  userId    Int
+  createdAt DateTime @default(now())
+  isSuccess Boolean
+
+  user       User        @relation(fields: [userId], references: [id])
+  orderItems OrderItem[]
 }

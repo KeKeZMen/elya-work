@@ -1,5 +1,9 @@
 import { DefaultSession, DefaultUser } from "next-auth";
 
+interface DefaultUser {
+  id: number
+}
+
 interface IUser extends DefaultUser {
   id: number;
 }

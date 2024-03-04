@@ -11,7 +11,7 @@ export const authOptions: AuthOptions = {
       id: "credentials",
       name: "credentials",
       credentials: {
-        email: { label: "name", type: "text" },
+        email: { label: "email", type: "email" },
         password: { label: "password", type: "password" },
       },
       async authorize(credentials) {
@@ -33,7 +33,9 @@ export const authOptions: AuthOptions = {
           throw new Error("Неверный логин или пароль");
         }
 
-        return user;
+        return {
+          
+        }
       },
     }),
   ],
