@@ -132,7 +132,7 @@ const Selects: FC<SelectsPropsType> = ({ onSelect }) => {
           </SelectTrigger>
           <SelectContent>
             <SelectItem value="all" className="cursor-pointer">
-              Все категории
+              Все жанры
             </SelectItem>
             {categories?.map((category) => (
               <SelectItem
@@ -174,13 +174,13 @@ const Selects: FC<SelectsPropsType> = ({ onSelect }) => {
 
       <Select onValueChange={(val) => setSelectedOrderBy(val)} defaultValue="0">
         <SelectTrigger>
-          <SelectValue placeholder="Категория" />
+          <SelectValue className="text-left"/>
         </SelectTrigger>
         <SelectContent>
           {sortOptions.map((option, i) => (
             <SelectItem
               value={option.value}
-              className=" text-leftcursor-pointer"
+              className="text-left cursor-pointer"
               key={i}
             >
               {option.label}
@@ -246,7 +246,6 @@ export const FilterSelects: FC<PropsType> = ({ alwaysMobile }) => {
   } else {
     return (
       <div className="flex flex-col justify-between items-center gap-3">
-        <h3>Фильтры</h3>
         <Selects />
       </div>
     );
