@@ -5,6 +5,7 @@ import { deleteCategory } from "./lib";
 import { DeleteConfirm } from "@/lib/ui/DeletionConfirm";
 import { Dialog, DialogContent } from "@/lib/ui/dialog";
 import { RxCross1 } from "react-icons/rx";
+import toast from "react-hot-toast";
 
 type PropsType = {
   categoryId: number;
@@ -15,7 +16,12 @@ export const DeleteCategoryButton: FC<PropsType> = ({ categoryId }) => {
   const handleModal = () => setIsOpenedModal((prev) => !prev);
 
   const handleDelete = async () => {
-    await deleteCategory(categoryId);
+    const res = await deleteCategory(categoryId);
+    if (res.data?.message) {
+      toast.success(res.data.message);
+    } else if (res.error?.message) {
+      toast.error(res.error.message);
+    }
   };
 
   return (

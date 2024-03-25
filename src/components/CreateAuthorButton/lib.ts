@@ -23,7 +23,7 @@ export const createAuthor = async (state: any, formData: FormData) => {
   } catch (error) {
     return {
       error: {
-        message: "Ошибка сервера",
+        message: String(error ?? "Ошибка сервера"),
       },
     };
   }

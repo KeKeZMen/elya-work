@@ -5,6 +5,7 @@ import { deleteAuthor } from "./lib";
 import { DeleteConfirm } from "@/lib/ui/DeletionConfirm";
 import { Dialog, DialogContent } from "@/lib/ui/dialog";
 import { RxCross1 } from "react-icons/rx";
+import toast from "react-hot-toast";
 
 type PropsType = {
   authorId: number;
@@ -15,7 +16,12 @@ export const DeleteAuthorButton: FC<PropsType> = ({ authorId }) => {
   const handleModal = () => setIsOpenedModal((prev) => !prev);
 
   const handleDelete = async () => {
-    await deleteAuthor(authorId);
+    const res = await deleteAuthor(authorId);
+    if (res.data?.message) {
+      toast.success(res.data.message);
+    } else if (res.error?.message) {
+      toast.error(res.error.message);
+    }
   };
 
   return (
