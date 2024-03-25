@@ -7,7 +7,7 @@ import {
   DropdownMenuLabel,
   DropdownMenuSeparator,
   DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu";
+} from "@/lib/ui/dropdown-menu";
 import { User } from "next-auth";
 import { FC } from "react";
 import { IoPerson } from "react-icons/io5";

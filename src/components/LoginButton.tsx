@@ -1,7 +1,7 @@
 "use client";
 
 import AuthForm from "./AuthForm";
-import { Dialog, DialogContent } from "@/components/ui/dialog";
+import { Dialog, DialogContent } from "@/lib/ui/dialog";
 import { useCallback, useState } from "react";
 import { IoMdPerson } from "react-icons/io";
 

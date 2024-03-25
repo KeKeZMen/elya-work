@@ -1,7 +1,7 @@
 import { DefaultSession, DefaultUser } from "next-auth";
 
 interface DefaultUser {
-  id: number
+  id: number;
 }
 
 interface IUser extends DefaultUser {
@@ -9,7 +9,9 @@ interface IUser extends DefaultUser {
 }
 
 declare module "next-auth" {
-  interface User extends IUser {}
+  interface User extends IUser {
+    id: number;
+  }
 
   interface Session {
     user?: User;

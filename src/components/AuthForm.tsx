@@ -5,7 +5,7 @@ import { FieldValues, SubmitHandler, useForm } from "react-hook-form";
 import { signIn } from "next-auth/react";
 import { useRouter } from "next/navigation";
 import { toast } from "react-hot-toast";
-import { Button } from "@/components/ui/button";
+import { Button } from "@/lib/ui/button";
 import {
   FormField,
   FormItem,
@@ -13,8 +13,8 @@ import {
   FormControl,
   FormMessage,
   Form,
-} from "@/components/ui/form";
-import { Input } from "@/components/ui/input";
+} from "@/lib/ui/form";
+import { Input } from "@/lib/ui/input";
 
 type Variant = "LOGIN" | "REGISTER";
 

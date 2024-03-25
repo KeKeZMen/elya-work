@@ -6,15 +6,15 @@ import { Nav } from "./Nav";
 import Link from "next/link";
 import { LoginButton } from "./LoginButton";
 import { getServerSession } from "next-auth";
-import { authOptions } from "@/app/api/auth/[...nextauth]/route";
 import { UserProfile } from "./UserProfile";
 import { LogoutButton } from "./LogoutButton";
+import { authOptions } from "@/lib/authOptions";
 
 export async function Header() {
   const session = await getServerSession(authOptions);
 
   return (
-    <header className="fixed top-0 w-full p-3 bg-white bg-opacity-80 md:px-10 ">
+    <header className="fixed top-0 w-full p-3 bg-white bg-opacity-80 md:px-10 shadow-md">
       <div className="flex justify-between items-center md:container ">
         <div className="flex gap-3">
           <MenuButton />
