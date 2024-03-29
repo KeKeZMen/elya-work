@@ -5,31 +5,23 @@ import { authOptions } from "@/shared/api/authOptions";
 import { db } from "@/shared/api/db";
 import { getServerSession } from "next-auth";
 
-export const addToCart = async (bookId: number) => {
+export const addToFavorite = async (bookId: number) => {
   try {
     const session = await getServerSession(authOptions);
     if (!session?.user) throw ApiError.unauthorized();
 
-    let order = await db.order.findFirst({
+    const favorite = await db.favorite.findFirst({
       where: {
+        bookId,
         userId: session.user.id,
-        isSuccess: false,
       },
     });
+    if (favorite) throw ApiError.badRequest("Уже в избранном!");
 
-    if (!order) {
-      order = await db.order.create({
-        data: {
-          isSuccess: false,
-          userId: session.user.id,
-        },
-      });
-    }
-
-    await db.orderItem.create({
+    await db.favorite.create({
       data: {
         bookId,
-        orderId: order.id,
+        userId: session.user.id,
       },
     });
 

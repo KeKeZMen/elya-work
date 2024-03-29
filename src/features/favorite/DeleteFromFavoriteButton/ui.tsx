@@ -1,20 +1,20 @@
 "use client";
 
 import { Button } from "@/shared/ui/button";
-import { addToCart } from "./lib";
-import { FC } from "react";
 import { useRouter } from "next/navigation";
+import { FC } from "react";
 import toast from "react-hot-toast";
+import { deleteFromFavorite } from "./api";
 
 type PropsType = {
   bookId: number;
 };
 
-export const AddToCartButton: FC<PropsType> = ({ bookId }) => {
+export const DeleteFromFavoriteButton: FC<PropsType> = ({ bookId }) => {
   const router = useRouter();
 
-  const handleAddToCart = async () => {
-    const res = await addToCart(bookId);
+  const handleDeleteFromFavorite = async () => {
+    const res = await deleteFromFavorite(bookId);
     if (res.data?.message) {
       toast.success(res.data.message);
       router.refresh();
@@ -22,10 +22,13 @@ export const AddToCartButton: FC<PropsType> = ({ bookId }) => {
       toast.error(res.error.message);
     }
   };
-
   return (
-    <Button className="w-full" onClick={handleAddToCart}>
-      Добавить в корзину
+    <Button
+      variant={"outline"}
+      className="w-full"
+      onClick={handleDeleteFromFavorite}
+    >
+      Удалить из избранного
     </Button>
   );
 };
