@@ -16,7 +16,7 @@ export default async function BookPage({
 }) {
   const book = await db.book.findFirst({
     where: {
-      id: Number(params.bookId),
+      id: params.bookId,
     },
     select: {
       author: {
@@ -25,7 +25,6 @@ export default async function BookPage({
         },
       },
       name: true,
-      image: true,
       id: true,
       description: true,
       category: {
@@ -63,10 +62,11 @@ export default async function BookPage({
       <div className="flex flex-col md:flex-row gap-3">
         <div className="md:w-[25%] flex flex-col gap-3">
           <img
-            src={book?.image}
+            src={`/books/${book.id}.jpg`}
             alt=""
-            className="h-[457px] w-full rounded-md mb-6"
+            className="h-[250px] w-[200px] self-center md:self-auto md:h-[457px] md:w-full rounded-md"
           />
+          <p className="text-center font-bold text-3xl">{book.price}₽</p>
           {orderItem ? (
             <DeleteFromCartButton bookId={book.id} />
           ) : (
@@ -82,7 +82,6 @@ export default async function BookPage({
           <div className="md:border-b-2 flex flex-col gap-3">
             <h2 className="text-4xl font-bold">{book.name}</h2>
             <p>{book.author.name}</p>
-            <p>Стоимость: {book.price}₽</p>
             <p className="pb-3">Жанр: {book.category.name}</p>
           </div>
           <p className="pt-3">{book.description}</p>

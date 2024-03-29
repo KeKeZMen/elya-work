@@ -1,11 +1,66 @@
 import { IoIosArrowDown } from "react-icons/io";
 import { Metadata } from "next";
+import { db } from "@/shared/api/db";
+import { BooksSlider } from "@/widgets/BooksSlider";
 
 export const metadata: Metadata = {
-  title: "Book`s | Главная"
+  title: "Book`s | Главная",
 };
 
-export default function Home() {
+export default async function Home() {
+  const discountedBooks = await db.book.findMany({
+    where: {
+      discount: {
+        gt: 0,
+      },
+    },
+    select: {
+      author: {
+        select: {
+          name: true,
+        },
+      },
+      name: true,
+      id: true,
+      description: true,
+      category: {
+        select: {
+          name: true,
+        },
+      },
+      price: true,
+      authorId: true,
+      categoryId: true,
+      discount: true,
+    },
+    take: 15,
+  });
+
+  const books = await db.book.findMany({
+    skip: 15,
+    select: {
+      author: {
+        select: {
+          name: true,
+        },
+      },
+      name: true,
+      id: true,
+      description: true,
+      category: {
+        select: {
+          name: true,
+        },
+      },
+      price: true,
+      authorId: true,
+      categoryId: true,
+      discount: true,
+    },
+  });
+
+  const categories = await db.category.findMany();
+
   return (
     <>
       <div className="h-[100dvh] bg-header bg-no-repeat bg-center bg-cover pt-14 flex flex-col justify-between md:items-center">
@@ -26,7 +81,15 @@ export default function Home() {
       </div>
 
       <main className="md:container" id="main">
-        <section></section>
+        <section className="flex flex-col gap-3">
+          <h2 className="text-left font-bold text-3xl">Скидки дня</h2>
+          <BooksSlider books={discountedBooks} />
+        </section>
+
+        <section>
+          <h2 className="text-left font-bold text-3xl">Популярное</h2>
+          <BooksSlider books={books} />
+        </section>
       </main>
     </>
   );

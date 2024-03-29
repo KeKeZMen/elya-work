@@ -5,7 +5,7 @@ import { authOptions } from "@/shared/api/authOptions";
 import { db } from "@/shared/api/db";
 import { getServerSession } from "next-auth";
 
-export const deleteFromFavorite = async (bookId: number) => {
+export const deleteFromFavorite = async (bookId: string) => {
   try {
     const session = await getServerSession(authOptions);
     if (!session?.user) throw ApiError.unauthorized();

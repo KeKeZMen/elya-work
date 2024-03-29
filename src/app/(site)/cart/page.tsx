@@ -37,12 +37,12 @@ export default async function CartPage() {
                 },
               },
               name: true,
-              image: true,
               price: true,
               id: true,
               authorId: true,
               categoryId: true,
               description: true,
+              discount: true
             },
           },
         },

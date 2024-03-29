@@ -72,8 +72,8 @@ export const BooksTable: FC<PropsType> = async ({ searchParams }) => {
 
   return (
     <div className="flex flex-col justify-between gap-3 md:flex-row">
-      <div className="flex flex-col border rounded-md md:w-full">
-        <DataTable addButton={<CreateBookButton />} title="Книги">
+      <div className="flex flex-col rounded-md md:w-full">
+        <DataTable addButton={<CreateBookButton />} title="Книги" fullWidth>
           {books.map((book) => (
             <BookRow
               book={book}

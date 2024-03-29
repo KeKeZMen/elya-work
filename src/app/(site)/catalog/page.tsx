@@ -84,12 +84,12 @@ export default async function CatalogPage({
         },
       },
       name: true,
-      image: true,
       id: true,
       authorId: true,
       categoryId: true,
       description: true,
       price: true,
+      discount: true
     },
   });
 

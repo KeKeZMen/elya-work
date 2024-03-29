@@ -10,9 +10,9 @@ import { fileURLToPath } from "url";
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
-const DIR_PATH = resolve(__dirname, "../../../public/");
+const DIR_PATH = resolve(__dirname, "../../../../public/books");
 
-export const deleteBook = async (bookId: number) => {
+export const deleteBook = async (bookId: string) => {
   try {
     const session = await getServerSession(authOptions);
     if (!session?.user) throw ApiError.unauthorized();
@@ -26,26 +26,17 @@ export const deleteBook = async (bookId: number) => {
 
     if (!book) throw ApiError.badRequest("Такой книги не существует!");
 
-    if (book.image) {
-      await unlink(join(DIR_PATH, "/", book.image));
-    }
+    unlink(join(DIR_PATH, "/", `${book.id}.jpg`)).catch((e) => console.log(e));
 
-    await db.$transaction([
-      db.book.delete({
-        where: {
-          id: bookId,
-        },
-      }),
-      db.orderItem.deleteMany({
-        where: {
-          id: bookId,
-        },
-      }),
-    ]);
+    await db.book.delete({
+      where: {
+        id: bookId,
+      },
+    });
 
     return {
       data: {
-        message: "Успешно создано!",
+        message: "Успешно удалено!",
       },
     };
   } catch (error) {

@@ -86,7 +86,12 @@ export const EditBookButton: FC<PropsType> = ({ book }) => {
               defaultValue={book.name}
             />
 
-            <Input name="image" type="file" placeholder="Обложка книги" />
+            <Input
+              name="image"
+              type="file"
+              placeholder="Обложка книги"
+              accept="image/jpg"
+            />
 
             <Textarea
               name="description"
@@ -99,6 +104,13 @@ export const EditBookButton: FC<PropsType> = ({ book }) => {
               type="number"
               placeholder="Стоимость книги в ₽"
               defaultValue={book.price}
+            />
+
+            <Input
+              name="discount"
+              type="number"
+              placeholder="Скидка в %"
+              defaultValue={book.discount}
             />
 
             {!isLoadingCategories && (

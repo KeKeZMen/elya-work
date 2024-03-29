@@ -74,7 +74,7 @@ export const CreateBookButton = () => {
           >
             <Input name="name" type="text" placeholder="Название книги" />
 
-            <Input name="image" type="file" placeholder="Обложка книги" />
+            <Input name="image" type="file" placeholder="Обложка книги" accept="image/jpg"/>
 
             <Textarea name="description" placeholder="Описание книги" />
 
@@ -82,6 +82,12 @@ export const CreateBookButton = () => {
               name="price"
               type="number"
               placeholder="Стоимость книги в ₽"
+            />
+
+            <Input
+              name="discount"
+              type="number"
+              placeholder="Скидка в %"
             />
 
             {!isLoadingCategories && (

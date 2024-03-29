@@ -13,7 +13,7 @@ export const BookCard: FC<PropsType> = ({ book }) => {
       key={book.id}
       className="w-[160px] flex flex-col gap-[2px]"
     >
-      <img src={book.image} alt="" className="rounded-md" />
+      <img src={`/books/${book.id}.jpg`} alt="" className="rounded-md" />
       <h2 className="text-xl font-bold">{book.name}</h2>
       <p>{book.author.name}</p>
     </Link>

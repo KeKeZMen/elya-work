@@ -7,7 +7,7 @@ import { useRouter } from "next/navigation";
 import toast from "react-hot-toast";
 
 type PropsType = {
-  bookId: number;
+  bookId: string;
 };
 
 export const DeleteFromCartButton: FC<PropsType> = ({ bookId }) => {

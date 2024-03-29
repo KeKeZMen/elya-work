@@ -10,7 +10,7 @@ import { fileURLToPath } from "url";
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
-const DIR_PATH = resolve(__dirname, "../../../public/books");
+const DIR_PATH = resolve(__dirname, "../../../../public/books");
 
 export const createBook = async (state: any, formData: FormData) => {
   try {
@@ -21,29 +21,29 @@ export const createBook = async (state: any, formData: FormData) => {
     const description = formData.get("description") as string;
     const name = formData.get("name") as string;
     const price = Number(formData.get("price") as string);
+    const discount = Number(formData.get("discount") as string);
     const authorId = Number(formData.get("authorId") as string);
     const categoryId = Number(formData.get("categoryId") as string);
 
-    const image = formData.get("image") as File;
-    const replacedName = name.replaceAll(" ", "-").toLowerCase();
-    const fileBytes = await image.arrayBuffer();
-    const fileBuffer = Buffer.from(fileBytes);
-    const fileName = `${replacedName}.${image.name.split(".").at(-1)}`;
-    const filePath = join(DIR_PATH, "/", fileName);
-
-    await writeFile(filePath, fileBuffer);
-
-    await db.book.create({
+    const book = await db.book.create({
       data: {
         description,
         name,
         price,
         authorId,
         categoryId,
-        image: `/books/${fileName}`,
+        discount,
       },
     });
 
+    const image = formData.get("image") as File;
+    const fileBytes = await image.arrayBuffer();
+    const fileBuffer = Buffer.from(fileBytes);
+    const fileName = `/${book.id}.jpg`;
+    const filePath = join(DIR_PATH, "/", fileName);
+
+    await writeFile(filePath, fileBuffer);
+    
     return {
       data: {
         message: "Успешно создано!",

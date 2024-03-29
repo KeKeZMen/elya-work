@@ -7,7 +7,7 @@ import toast from "react-hot-toast";
 import { addToFavorite } from "./api";
 
 type PropsType = {
-  bookId: number;
+  bookId: string;
 };
 
 export const AddToFavoriteButton: FC<PropsType> = ({ bookId }) => {

@@ -33,13 +33,13 @@ model Category {
 }
 
 model Book {
-  id          Int    @id @default(autoincrement())
+  id          String @id @default(cuid())
   name        String
   description String @db.Text
   authorId    Int
   categoryId  Int
-  image       String
   price       Int
+  discount    Int    @default(0)
 
   category  Category    @relation(fields: [categoryId], references: [id])
   author    Author      @relation(fields: [authorId], references: [id])
@@ -48,8 +48,8 @@ model Book {
 }
 
 model Favorite {
-  id     Int @id @default(autoincrement())
-  bookId Int
+  id     Int    @id @default(autoincrement())
+  bookId String
   userId Int
 
   book Book @relation(fields: [bookId], references: [id])
@@ -57,12 +57,12 @@ model Favorite {
 }
 
 model OrderItem {
-  id      Int @id @default(autoincrement())
+  id      Int    @id @default(autoincrement())
   orderId Int
-  bookId  Int
+  bookId  String
 
-  order Order @relation(fields: [orderId], references: [id])
-  book  Book  @relation(fields: [bookId], references: [id])
+  order Order @relation(fields: [orderId], references: [id], onDelete: Cascade)
+  book  Book  @relation(fields: [bookId], references: [id], onDelete: Cascade)
 }
 
 model Order {

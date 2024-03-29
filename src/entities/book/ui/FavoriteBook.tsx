@@ -12,7 +12,11 @@ export const FavoriteBook: FC<PropsType> = ({ book }) => {
       href={`/book/${book.id}`}
       className="border-b last:border-none flex justify-start gap-1 pt-1"
     >
-      <img src={book.image} alt="" className="rounded-md h-[150px]" />
+      <img
+        src={`/books/${book.id}.jpg`}
+        alt=""
+        className="rounded-md h-[150px]"
+      />
       <div className="flex flex-col gap-1">
         <p>Название: {book.name}</p>
         <p>Автор: {book.author.name}</p>

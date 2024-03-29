@@ -7,7 +7,7 @@ import toast from "react-hot-toast";
 import { deleteFromFavorite } from "./api";
 
 type PropsType = {
-  bookId: number;
+  bookId: string;
 };
 
 export const DeleteFromFavoriteButton: FC<PropsType> = ({ bookId }) => {
