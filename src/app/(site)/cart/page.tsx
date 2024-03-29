@@ -55,7 +55,7 @@ export default async function CartPage() {
       {order ? (
         <>
           <div className="flex flex-col w-full md:w-[70%]">
-            <div className="border-b border-gray-400 pb-3 flex justify-start items-center mb-3">
+            <div className="border-b border-gray-400 pb-3 flex justify-between md:justify-start items-center mb-3">
               <h2 className="mr-10 text-2xl font-bold">Корзина</h2>
               <p className="text-gray-500">{order?.orderItems.length} товара</p>
             </div>

@@ -20,3 +20,9 @@ export interface IOrderWithAuthorAndItems extends Order {
     book: Book;
   }>;
 }
+
+export interface ISearchedProduct {
+  id: number;
+  name: string;
+  price: number;
+}

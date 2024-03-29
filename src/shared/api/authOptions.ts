@@ -1,5 +1,5 @@
 import { createHash } from "crypto";
-import NextAuth, { AuthOptions, User } from "next-auth";
+import { AuthOptions, User } from "next-auth";
 import CredentialsProvider from "next-auth/providers/credentials";
 import { PrismaAdapter } from "@next-auth/prisma-adapter";
 import { db } from "@/shared/api/db";

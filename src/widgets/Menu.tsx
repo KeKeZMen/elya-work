@@ -2,20 +2,24 @@
 
 import { RxCross1 } from "react-icons/rx";
 import { Nav } from "./Nav";
-import { ThemeButton } from "@/features/theme/ThemeButton";
 import { AnimatePresence, motion } from "framer-motion";
 import { GiHamburgerMenu } from "react-icons/gi";
 import Link from "next/link";
 import { useWindowSize } from "@/shared/lib/useWindowSize";
 import { useState } from "react";
+import { UserProfile } from "@/entities/user/ui/UserProfile";
+import { LoginButton } from "@/features/auth/LoginButton";
+import { LogoutButton } from "@/features/auth/LogoutButton";
+import { useSession } from "next-auth/react";
 
 export const Menu = () => {
-  const { width } = useWindowSize();
+  const { data } = useSession();
   const [isOpenedMenu, setisOpenedMenu] = useState(false);
   const handleMenu = () => {
     setisOpenedMenu((prev) => !prev);
   };
 
+  const { width } = useWindowSize();
   if (!width || width >= 768) return null;
 
   return (
@@ -36,22 +40,31 @@ export const Menu = () => {
               initial={{ width: 0 }}
               animate={{ width: "300px" }}
               exit={{ width: 0 }}
-              className="bg-white flex flex-col h-full overflow-hidden"
+              className="bg-white flex flex-col h-full overflow-hidden relative"
               onClick={(e) => e.stopPropagation()}
             >
-              <div className="w-full flex items-center p-6 justify-between shrink-0 min-w-[300px]">
-                <button onClick={handleMenu} className="text-2xl">
+              <div className="w-full flex items-center justify-center p-6 shrink-0 min-w-[300px] relative">
+                <button onClick={handleMenu} className="text-2xl absolute left-[20px]">
                   <RxCross1 />
                 </button>
 
                 <Link href={"/"} onClick={handleMenu}>
                   Главная
                 </Link>
-
-                <ThemeButton />
               </div>
 
               <Nav onClick={handleMenu} />
+
+              <div className="w-full absolute flex items-center justify-center bottom-0 bg-[#D19E3A] text-white">
+                {data?.user ? (
+                  <UserProfile
+                    user={data.user}
+                    LogoutButton={<LogoutButton />}
+                  />
+                ) : (
+                  <LoginButton />
+                )}
+              </div>
             </motion.aside>
           </motion.div>
         )}

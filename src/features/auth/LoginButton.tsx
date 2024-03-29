@@ -8,11 +8,12 @@ import {
   FormLabel,
   FormControl,
   FormMessage,
+  Form
 } from "@/shared/ui/form";
 import { signIn } from "next-auth/react";
 import { Input } from "@/shared/ui/input";
 import { useCallback, useState } from "react";
-import { useForm, FieldValues, SubmitHandler, Form } from "react-hook-form";
+import { useForm, FieldValues, SubmitHandler } from "react-hook-form";
 import { useRouter } from "next/navigation";
 import toast from "react-hot-toast";
 import { IoMdPerson } from "react-icons/io";
