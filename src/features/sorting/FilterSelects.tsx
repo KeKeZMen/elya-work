@@ -80,22 +80,30 @@ const Selects: FC<SelectsPropsType> = ({ onSelect }) => {
     authorsFetcher
   );
 
-  const [selectedCategory, setSelectedCategory] = useState("");
-  const [selectedAuthor, setSelectedAuthor] = useState("");
-  const [startCost, setStartCost] = useState("0");
-  const [finalCost, setFinalCost] = useState("10000");
+  const [selectedCategory, setSelectedCategory] = useState(
+    searchParams.get("categoryId") ?? "all"
+  );
+  const [selectedAuthor, setSelectedAuthor] = useState(
+    searchParams.get("authorId") ?? "all"
+  );
+  const [startCost, setStartCost] = useState(
+    searchParams.get("startCost") ?? "0"
+  );
+  const [finalCost, setFinalCost] = useState(
+    searchParams.get("finalCost") ?? "5000"
+  );
   const [selectedOrderBy, setSelectedOrderBy] = useState("0");
 
   const handleQuery = () => {
     const current = new URLSearchParams(Array.from(searchParams.entries()));
 
-    if (selectedCategory == "") {
+    if (selectedCategory == "" || selectedCategory == "all") {
       current.set("categoryId", "all");
     } else {
       current.set("categoryId", selectedCategory);
     }
 
-    if (selectedAuthor == "") {
+    if (selectedAuthor == "" || selectedAuthor == "all") {
       current.set("authorId", "all");
     } else {
       current.set("authorId", selectedAuthor);
@@ -125,7 +133,7 @@ const Selects: FC<SelectsPropsType> = ({ onSelect }) => {
       {!isLoadingCategories && (
         <Select
           onValueChange={(val) => setSelectedCategory(val)}
-          defaultValue="all"
+          defaultValue={String(searchParams.get("categoryId") ?? "all")}
         >
           <SelectTrigger>
             <SelectValue placeholder="Категория" />
@@ -150,7 +158,7 @@ const Selects: FC<SelectsPropsType> = ({ onSelect }) => {
       {!isLoadingAuthors && (
         <Select
           onValueChange={(val) => setSelectedAuthor(val)}
-          defaultValue="all"
+          defaultValue={String(searchParams.get("authorId" ?? "all"))}
         >
           <SelectTrigger>
             <SelectValue placeholder="Категория" />
@@ -174,7 +182,7 @@ const Selects: FC<SelectsPropsType> = ({ onSelect }) => {
 
       <Select onValueChange={(val) => setSelectedOrderBy(val)} defaultValue="0">
         <SelectTrigger>
-          <SelectValue className="text-left"/>
+          <SelectValue className="text-left" />
         </SelectTrigger>
         <SelectContent>
           {sortOptions.map((option, i) => (

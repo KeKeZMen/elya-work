@@ -11,7 +11,7 @@ export const SearchedProduct: FC<PropsType> = ({ book, onClick }) => {
   return (
     <Link onClick={onClick} href={`/book/${book.id}`} className="p-1">
       <p>
-        {book.name}: {book.price}
+        {book.name}: {book.price}₽
       </p>
     </Link>
   );
