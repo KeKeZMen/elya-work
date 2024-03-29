@@ -1,14 +1,26 @@
+import clsx from "clsx";
 import React, { FC, ReactNode } from "react";
 
 type PropsType = {
   title: string;
   children: ReactNode;
   addButton?: JSX.Element;
+  fullWidth?: boolean;
 };
 
-export const DataTable: FC<PropsType> = ({ title, children, addButton }) => {
+export const DataTable: FC<PropsType> = ({
+  title,
+  children,
+  addButton,
+  fullWidth,
+}) => {
   return (
-    <div className="flex flex-col border rounded-md md:w-[50%]">
+    <div
+      className={clsx(
+        "flex flex-col border rounded-md",
+        fullWidth ? "w-full" : "md:w-[50%]"
+      )}
+    >
       <div className="flex flex-col">
         <div className="flex justify-between items-center border-b p-3">
           <h2 className="text-4xl">{title}</h2>

@@ -5,6 +5,7 @@ import { authOptions } from "@/shared/api/authOptions";
 import { redirect } from "next/navigation";
 import { db } from "@/shared/api/db";
 import { Button } from "@/shared/ui/button";
+import { OrderedBookRow } from "@/entities/book/ui/OrderedBookRow";
 
 export const metadata: Metadata = {
   title: "Book`s | Корзина",
@@ -39,6 +40,9 @@ export default async function CartPage() {
               image: true,
               price: true,
               id: true,
+              authorId: true,
+              categoryId: true,
+              description: true,
             },
           },
         },
@@ -56,25 +60,8 @@ export default async function CartPage() {
               <p className="text-gray-500">{order?.orderItems.length} товара</p>
             </div>
             <div className="flex flex-col gap-3">
-              {order.orderItems.map((book) => (
-                <div
-                  className="flex flex-row justify-between"
-                  key={book.book.id}
-                >
-                  <div className="flex flex-row gap-3">
-                    <img
-                      src={book.book.image}
-                      alt=""
-                      className="rounded-md h-[200px]"
-                    />
-                    <div className="flex flex-col gap-1">
-                      <h3 className="text-xl">{book.book.name}</h3>
-                      <p>{book.book.author.name}</p>
-                      <p>{book.book.category.name}</p>
-                    </div>
-                  </div>
-                  <p>{book.book.price} ₽</p>
-                </div>
+              {order.orderItems.map((orderItem) => (
+                <OrderedBookRow book={orderItem.book} key={orderItem.book.id} />
               ))}
             </div>
           </div>
@@ -96,7 +83,9 @@ export default async function CartPage() {
           </div>
         </>
       ) : (
-        <h1 className="self-center justify-self-center w-full text-center font-bold text-2xl">Вы не добавили ни одного товара в корзину!</h1>
+        <h1 className="self-center justify-self-center w-full text-center font-bold text-2xl">
+          Вы не добавили ни одного товара в корзину!
+        </h1>
       )}
     </main>
   );
