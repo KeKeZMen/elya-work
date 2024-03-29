@@ -6,6 +6,7 @@ type PropsType = {
   children: ReactNode;
   addButton?: JSX.Element;
   fullWidth?: boolean;
+  margin?: string;
 };
 
 export const DataTable: FC<PropsType> = ({
@@ -13,6 +14,7 @@ export const DataTable: FC<PropsType> = ({
   children,
   addButton,
   fullWidth,
+  margin,
 }) => {
   return (
     <div
@@ -20,6 +22,9 @@ export const DataTable: FC<PropsType> = ({
         "flex flex-col border rounded-md",
         fullWidth ? "w-full" : "md:w-[50%]"
       )}
+      style={{
+        margin,
+      }}
     >
       <div className="flex flex-col">
         <div className="flex justify-between items-center border-b p-3">

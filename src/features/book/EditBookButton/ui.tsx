@@ -84,6 +84,7 @@ export const EditBookButton: FC<PropsType> = ({ book }) => {
               type="text"
               placeholder="Название книги"
               defaultValue={book.name}
+              required
             />
 
             <Input
@@ -91,9 +92,11 @@ export const EditBookButton: FC<PropsType> = ({ book }) => {
               type="file"
               placeholder="Обложка книги"
               accept="image/jpg"
+              required
             />
 
             <Textarea
+              required
               name="description"
               placeholder="Описание книги"
               defaultValue={book.description}
@@ -104,6 +107,7 @@ export const EditBookButton: FC<PropsType> = ({ book }) => {
               type="number"
               placeholder="Стоимость книги в ₽"
               defaultValue={book.price}
+              required
             />
 
             <Input
@@ -111,12 +115,14 @@ export const EditBookButton: FC<PropsType> = ({ book }) => {
               type="number"
               placeholder="Скидка в %"
               defaultValue={book.discount}
+              required
             />
 
             {!isLoadingCategories && (
               <Select
                 onValueChange={(val) => setSelectedCategory(val)}
                 defaultValue={String(book.categoryId)}
+                required
               >
                 <SelectTrigger>
                   <SelectValue placeholder="Категория" />
@@ -139,6 +145,7 @@ export const EditBookButton: FC<PropsType> = ({ book }) => {
               <Select
                 onValueChange={(val) => setSelectedAuthor(val)}
                 defaultValue={String(book.authorId)}
+                required
               >
                 <SelectTrigger>
                   <SelectValue placeholder="Автор" />

@@ -72,26 +72,46 @@ export const CreateBookButton = () => {
             }}
             className="flex flex-col gap-3"
           >
-            <Input name="name" type="text" placeholder="Название книги" />
+            <Input
+              name="name"
+              type="text"
+              placeholder="Название книги"
+              required
+            />
 
-            <Input name="image" type="file" placeholder="Обложка книги" accept="image/jpg"/>
+            <Input
+              name="image"
+              type="file"
+              placeholder="Обложка книги"
+              accept="image/jpg"
+              required
+            />
 
-            <Textarea name="description" placeholder="Описание книги" />
+            <Textarea
+              name="description"
+              placeholder="Описание книги"
+              required
+            />
 
             <Input
               name="price"
               type="number"
               placeholder="Стоимость книги в ₽"
+              required
             />
 
             <Input
+              required
               name="discount"
               type="number"
               placeholder="Скидка в %"
             />
 
             {!isLoadingCategories && (
-              <Select onValueChange={(val) => setSelectedCategory(val)}>
+              <Select
+                onValueChange={(val) => setSelectedCategory(val)}
+                required
+              >
                 <SelectTrigger>
                   <SelectValue placeholder="Категория" />
                 </SelectTrigger>
@@ -110,7 +130,7 @@ export const CreateBookButton = () => {
             )}
 
             {!isLoadingAuthors && (
-              <Select onValueChange={(val) => setSelectedAuthor(val)}>
+              <Select required onValueChange={(val) => setSelectedAuthor(val)}>
                 <SelectTrigger>
                   <SelectValue placeholder="Автор" />
                 </SelectTrigger>

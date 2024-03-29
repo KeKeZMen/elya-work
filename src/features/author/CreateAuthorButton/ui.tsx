@@ -37,7 +37,7 @@ export const CreateAuthorButton = () => {
         <DialogContent className="flex flex-col gap-3">
           <DialogTitle>Добавить автора</DialogTitle>
           <form action={formAction} className="flex flex-col gap-3">
-            <Input name="name" type="text" placeholder="Имя автора" />
+            <Input name="name" type="text" placeholder="Имя автора" required />
 
             <div className="flex justify-between">
               <Button variant="destructive" type="button" onClick={handleModal}>

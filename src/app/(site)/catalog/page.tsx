@@ -3,7 +3,6 @@ import { Metadata } from "next";
 import { redirect } from "next/navigation";
 import { db } from "@/shared/api/db";
 import { FilterSelects } from "@/features/sorting/FilterSelects";
-import Link from "next/link";
 import { PaginationNav } from "@/features/sorting/PaginationNav";
 import { BookCard } from "@/entities/book/ui/BookCard";
 
@@ -34,7 +33,7 @@ export default async function CatalogPage({
 }) {
   if (Object.values(searchParams).length < 4) {
     redirect(
-      "/catalog?page=0&categoryId=all&authorId=all&startCost=0&finalCost=1000"
+      "/catalog?page=0&categoryId=all&authorId=all&startCost=0&finalCost=10000"
     );
   }
 

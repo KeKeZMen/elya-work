@@ -32,7 +32,6 @@ export const EditAuthorButton: FC<PropsType> = ({ author }) => {
     onClose();
   }, [state]);
 
-
   return (
     <>
       <button onClick={handleModal} className="text-2xl">
@@ -54,6 +53,7 @@ export const EditAuthorButton: FC<PropsType> = ({ author }) => {
               type="text"
               placeholder="Имя автора"
               defaultValue={author.name}
+              required
             />
 
             <div className="flex justify-between">

@@ -2,6 +2,7 @@ import { IoIosArrowDown } from "react-icons/io";
 import { Metadata } from "next";
 import { db } from "@/shared/api/db";
 import { BooksSlider } from "@/widgets/BooksSlider";
+import { CategoryCard } from "@/entities/category/ui/CategoryCard";
 
 export const metadata: Metadata = {
   title: "Book`s | Главная",
@@ -89,6 +90,15 @@ export default async function Home() {
         <section>
           <h2 className="text-left font-bold text-3xl">Популярное</h2>
           <BooksSlider books={books} />
+        </section>
+
+        <section>
+          <h2 className="text-left font-bold text-3xl">Жанры</h2>
+          <div className="flex gap-5 flex-wrap">
+            {categories.map((category) => (
+              <CategoryCard category={category} key={category.id} />
+            ))}
+          </div>
         </section>
       </main>
     </>

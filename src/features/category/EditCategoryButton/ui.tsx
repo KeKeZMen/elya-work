@@ -53,6 +53,15 @@ export const EditCategoryButton: FC<PropsType> = ({ category }) => {
               type="text"
               placeholder="Название категории"
               defaultValue={category.name}
+              required
+            />
+
+            <Input
+              name="image"
+              type="file"
+              accept="image/jpg"
+              placeholder="Фото категории"
+              required
             />
 
             <div className="flex justify-between">
@@ -60,7 +69,7 @@ export const EditCategoryButton: FC<PropsType> = ({ category }) => {
                 Отменить
               </Button>
               <Button variant="default" type="submit" onClick={handleModal}>
-                Создать
+                Отредактировать
               </Button>
             </div>
           </form>

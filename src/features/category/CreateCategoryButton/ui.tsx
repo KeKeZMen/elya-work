@@ -37,7 +37,20 @@ export const CreateCategoryButton = () => {
         <DialogContent className="flex flex-col gap-3">
           <DialogTitle>Создать категорию</DialogTitle>
           <form action={formAction} className="flex flex-col gap-3">
-            <Input name="name" type="text" placeholder="Название категории" />
+            <Input
+              name="name"
+              type="text"
+              placeholder="Название категории"
+              required
+            />
+
+            <Input
+              name="image"
+              type="file"
+              accept="image/jpg"
+              placeholder="Фото категории"
+              required
+            />
 
             <div className="flex justify-between">
               <Button variant="destructive" type="button" onClick={handleModal}>

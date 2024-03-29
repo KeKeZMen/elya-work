@@ -3,7 +3,14 @@
 import ApiError from "@/shared/api/ApiError";
 import { authOptions } from "@/shared/api/authOptions";
 import { db } from "@/shared/api/db";
+import { unlink, writeFile } from "fs/promises";
 import { getServerSession } from "next-auth";
+import { dirname, join, resolve } from "path";
+import { fileURLToPath } from "url";
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = dirname(__filename);
+const DIR_PATH = resolve(__dirname, "../../../../public/categories");
 
 export const editCategory = async (state: any, formData: FormData) => {
   try {
@@ -14,7 +21,7 @@ export const editCategory = async (state: any, formData: FormData) => {
     const name = formData.get("name") as string;
     const categoryId = Number(formData.get("categoryId") as string);
 
-    await db.category.update({
+    const category = await db.category.update({
       where: {
         id: categoryId,
       },
@@ -23,9 +30,18 @@ export const editCategory = async (state: any, formData: FormData) => {
       },
     });
 
+    const image = formData.get("image") as File;
+    const fileBytes = await image.arrayBuffer();
+    const fileBuffer = Buffer.from(fileBytes);
+    const fileName = `/${category.id}.jpg`;
+    const filePath = join(DIR_PATH, "/", fileName);
+
+    await unlink(filePath)
+    await writeFile(filePath, fileBuffer);
+
     return {
       data: {
-        message: "Успешно создано!",
+        message: "Успешно отредактировано!",
       },
     };
   } catch (error) {

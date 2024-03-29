@@ -83,7 +83,7 @@ const Selects: FC<SelectsPropsType> = ({ onSelect }) => {
   const [selectedCategory, setSelectedCategory] = useState("");
   const [selectedAuthor, setSelectedAuthor] = useState("");
   const [startCost, setStartCost] = useState("0");
-  const [finalCost, setFinalCost] = useState("1000");
+  const [finalCost, setFinalCost] = useState("10000");
   const [selectedOrderBy, setSelectedOrderBy] = useState("0");
 
   const handleQuery = () => {

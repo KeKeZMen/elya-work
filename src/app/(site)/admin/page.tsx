@@ -25,7 +25,7 @@ export default async function AdminPage({
 
   if (Object.values(searchParams).length < 4) {
     redirect(
-      "/admin?page=0&categoryId=all&authorId=all&startCost=0&finalCost=1000"
+      "/admin?page=0&categoryId=all&authorId=all&startCost=0&finalCost=10000"
     );
   }
 

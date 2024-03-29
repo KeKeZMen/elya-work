@@ -21,10 +21,13 @@ export const OrdersTable = async () => {
         },
       },
     },
+    where: {
+      isSuccess: true
+    }
   });
 
   return (
-    <DataTable title="Заказы" fullWidth>
+    <DataTable title="Заказы" fullWidth margin="12px 0">
       {orders.map((order) => (
         <OrderRow order={order} key={order.id} />
       ))}
