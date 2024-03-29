@@ -76,7 +76,7 @@ export default async function CartPage() {
             </div>
             <Button
               disabled={order.orderItems.length < 1}
-              className="w-full mt-3"
+              className="w-full mt-3 z-0 disabled:bg-primary/50 disabled:opacity-100"
             >
               Перейти к оформлению
             </Button>

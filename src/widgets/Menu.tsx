@@ -31,7 +31,7 @@ export const Menu = () => {
       <AnimatePresence>
         {isOpenedMenu && (
           <motion.div
-            className="w-full h-full fixed z-20 top-0 left-0"
+            className="w-full h-full fixed z-50 top-0 left-0"
             onClick={handleMenu}
             animate={{ backgroundColor: "rgba(0, 0, 0, 0.70)" }}
             exit={{ backgroundColor: "rgba(0, 0, 0, 0)" }}
@@ -40,7 +40,7 @@ export const Menu = () => {
               initial={{ width: 0 }}
               animate={{ width: "300px" }}
               exit={{ width: 0 }}
-              className="bg-white flex flex-col h-full overflow-hidden relative"
+              className="bg-white flex flex-col h-full overflow-hidden relative z-[100]"
               onClick={(e) => e.stopPropagation()}
             >
               <div className="w-full flex items-center justify-center p-6 shrink-0 min-w-[300px] relative">

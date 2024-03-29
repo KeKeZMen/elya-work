@@ -41,9 +41,13 @@ export const FavoriteBooks = async () => {
 
   return (
     <DataTable title="Избранное" fullWidth>
-      {favoriteBooks.map((favorite) => (
-        <FavoriteBook book={favorite.book} key={favorite.book.id} />
-      ))}
+      {favoriteBooks.length > 0 ? (
+        favoriteBooks.map((favorite) => (
+          <FavoriteBook book={favorite.book} key={favorite.book.id} />
+        ))
+      ) : (
+        <h2 className="self-center font-bold text-2xl mt-3">У вас нет избранных книг</h2>
+      )}
     </DataTable>
   );
 };

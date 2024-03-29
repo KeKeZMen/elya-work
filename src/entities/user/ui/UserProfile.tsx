@@ -49,7 +49,7 @@ export const UserProfile: FC<PropsType> = ({ user, LogoutButton }) => {
           </DropdownMenuContent>
         </DropdownMenu>
       ) : (
-        <div className="flex w-full justify-between p-3 items-center ">
+        <div className="flex w-full justify-between p-3 items-center shrink-0">
           <p className="text-3xl ">
             <IoPerson />
           </p>
