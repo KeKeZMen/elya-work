@@ -1,5 +1,9 @@
-import { db } from "@/lib/db";
-import { Button } from "@/lib/ui/button";
+import { AddToOrderButton } from "@/features/cart/AddToCartButton/ui";
+import { DeleteFromCartButton } from "@/features/cart/DeleteFromCartButton/ui";
+import { authOptions } from "@/shared/api/authOptions";
+import { db } from "@/shared/api/db";
+import { Button } from "@/shared/ui/button";
+import { getServerSession } from "next-auth";
 import { redirect } from "next/navigation";
 import React from "react";
 
@@ -31,6 +35,18 @@ export default async function BookPage({
     },
   });
 
+  const session = await getServerSession(authOptions);
+
+  const orderItem = await db.orderItem.findFirst({
+    where: {
+      order: {
+        userId: session?.user?.id,
+        isSuccess: false,
+      },
+      bookId: book?.id,
+    },
+  });
+
   if (!book) redirect("/catalog");
 
   return (
@@ -40,9 +56,13 @@ export default async function BookPage({
           <img
             src={book?.image}
             alt=""
-            className="h-[357px] w-full rounded-md mb-6"
+            className="h-[457px] w-full rounded-md mb-6"
           />
-          <Button className="w-full">Добавить в корзину</Button>
+          {orderItem ? (
+            <DeleteFromCartButton bookId={book.id} />
+          ) : (
+            <AddToOrderButton bookId={book.id} />
+          )}
           <Button variant={"outline"} className="w-full">
             Добавить в избранное
           </Button>

@@ -1,10 +1,11 @@
 import React from "react";
 import { Metadata } from "next";
 import { redirect } from "next/navigation";
-import { db } from "@/lib/db";
-import { FilterSelects } from "@/components/FilterSelects";
+import { db } from "@/shared/api/db";
+import { FilterSelects } from "@/features/sorting/FilterSelects";
 import Link from "next/link";
-import { PaginationNav } from "@/components/PaginationNav";
+import { PaginationNav } from "@/features/sorting/PaginationNav";
+import { BookCard } from "@/entities/book/ui/BookCard";
 
 export const metadata: Metadata = {
   title: "Book`s | Каталог",
@@ -85,6 +86,10 @@ export default async function CatalogPage({
       name: true,
       image: true,
       id: true,
+      authorId: true,
+      categoryId: true,
+      description: true,
+      price: true,
     },
   });
 
@@ -92,20 +97,12 @@ export default async function CatalogPage({
     <main className="md:container pt-20 md:pt-28">
       <div className="flex flex-col md:flex-row">
         <FilterSelects />
-        <div className="ml-16 md:w-full">
+        <div className="mt-4 md:mt-0 md:ml-16 md:w-full">
           {books.length > 0 ? (
             <>
               <div className="flex flex-wrap">
                 {books.map((book) => (
-                  <Link
-                    href={`/book/${book.id}`}
-                    key={book.id}
-                    className="w-[160px] flex flex-col gap-[2px]"
-                  >
-                    <img src={book.image} alt="" className="rounded-md" />
-                    <h2 className="text-xl font-bold">{book.name}</h2>
-                    <p>{book.author.name}</p>
-                  </Link>
+                  <BookCard book={book} key={book.id} />
                 ))}
               </div>
               {books.length > 10 && (

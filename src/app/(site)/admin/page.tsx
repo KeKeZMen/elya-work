@@ -1,18 +1,20 @@
-import { db } from "@/lib/db";
-import { authOptions } from "@/lib/authOptions";
+import { db } from "@/shared/api/db";
+import { authOptions } from "@/shared/api/authOptions";
 import { getServerSession } from "next-auth";
 import { redirect } from "next/navigation";
-import { FilterSelects } from "@/components/FilterSelects";
-import { PaginationNav } from "@/components/PaginationNav";
-import { CreateCategoryButton } from "@/components/CreateCategoryButton/ui";
-import { CreateAuthorButton } from "@/components/CreateAuthorButton/ui";
-import { CreateBookButton } from "@/components/CreateBookButton/ui";
-import { DeleteBookButton } from "@/components/DeleteBookButton/ui";
-import { DeleteAuthorButton } from "@/components/DeleteAuthorButton/ui";
-import { DeleteCategoryButton } from "@/components/DeleteCategoryButton/ui";
-import { EditBookButton } from "@/components/EditBookButton/ui";
-import { EditCategoryButton } from "@/components/EditCategoryButton/ui";
-import { EditAuthorButton } from "@/components/EditAuthorButton/ui";
+import { FilterSelects } from "@/features/sorting/FilterSelects";
+import { PaginationNav } from "@/features/sorting/PaginationNav";
+import { CreateCategoryButton } from "@/features/category/CreateCategoryButton/ui";
+import { CreateAuthorButton } from "@/features/author/CreateAuthorButton/ui";
+import { CreateBookButton } from "@/features/book/CreateBookButton/ui";
+import { DeleteBookButton } from "@/features/book/DeleteBookButton/ui";
+import { DeleteAuthorButton } from "@/features/author/DeleteAuthorButton/ui";
+import { DeleteCategoryButton } from "@/features/category/DeleteCategoryButton/ui";
+import { EditBookButton } from "@/features/book/EditBookButton/ui";
+import { EditCategoryButton } from "@/features/category/EditCategoryButton/ui";
+import { EditAuthorButton } from "@/features/author/EditAuthorButton/ui";
+import { CategoryRow } from "@/entities/category/ui/CategoryRow";
+import { CategoriesTable } from "@/widgets/CategoriesTable";
 
 type SearchParamsType = {
   page: string;
@@ -112,8 +114,6 @@ export default async function AdminPage({
     where,
   });
 
-  const categories = await db.category.findMany({});
-
   const authors = await db.author.findMany({});
 
   return (
@@ -151,29 +151,7 @@ export default async function AdminPage({
       </div>
 
       <div className="flex flex-col gap-3 justify-between mt-3 md:flex-row">
-        <div className="flex flex-col border rounded-md md:w-[50%]">
-          <div className="flex flex-col">
-            <div className="flex justify-between items-center border-b p-3">
-              <h2 className="text-4xl">Категории</h2>
-              <CreateCategoryButton />
-            </div>
-
-            <div className="flex flex-col h-[300px] overflow-y-auto shrink-0">
-              {categories.map((category) => (
-                <div
-                  className="flex justify-between border-b p-3 last:border-none"
-                  key={category.id}
-                >
-                  <p>{category.name}</p>
-                  <div className="flex gap-3">
-                    <EditCategoryButton category={category} />
-                    <DeleteCategoryButton categoryId={category.id} />
-                  </div>
-                </div>
-              ))}
-            </div>
-          </div>
-        </div>
+        <CategoriesTable />
 
         <div className="flex flex-col border rounded-md md:w-[50%]">
           <div className="flex flex-col">
@@ -213,6 +191,7 @@ export default async function AdminPage({
                 className="flex justify-between border-b p-3 last:border-none"
               >
                 <p>{user.name}</p>
+                <p>{user.email}</p>
               </div>
             ))}
           </div>
@@ -233,9 +212,9 @@ export default async function AdminPage({
               >
                 <p>{order.user.email}</p>
                 <p>
-                  {order.orderItems.map(
-                    (orderItem) => `${orderItem.book.name}`
-                  )}
+                  {order.orderItems
+                    .map((orderItem) => `${orderItem.book.name}`)
+                    .join(", ")}
                 </p>
                 <p>
                   {order.orderItems.reduce(

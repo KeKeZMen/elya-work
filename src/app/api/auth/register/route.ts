@@ -1,5 +1,5 @@
 import { createHash } from "crypto";
-import { db } from "@/lib/db";
+import { db } from "@/shared/api/db";
 import { NextResponse } from "next/server";
 
 export async function POST(req: Request) {
