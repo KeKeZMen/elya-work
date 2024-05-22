@@ -17,7 +17,7 @@ export const Header = () => {
   const { width } = useWindowSize();
 
   return (
-    <header className="fixed top-0 w-full p-3 bg-white bg-opacity-80 md:px-10 shadow-md">
+    <header className="fixed top-0 w-full p-3 bg-white bg-opacity-80 md:px-10 shadow-md z-50">
       <div className="flex justify-between items-center md:container ">
         <div className="flex gap-3">
           <Menu />

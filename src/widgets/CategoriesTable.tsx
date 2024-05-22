@@ -10,7 +10,7 @@ export const CategoriesTable = async () => {
   const categories = await db.category.findMany({});
 
   return (
-    <DataTable title="Категории" addButton={<CreateCategoryButton />}>
+    <DataTable title="Жанры" addButton={<CreateCategoryButton />}>
       {categories.map((category) => (
         <CategoryRow
           key={category.id}

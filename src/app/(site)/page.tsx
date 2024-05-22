@@ -83,17 +83,21 @@ export default async function Home() {
 
       <main className="md:container" id="main">
         <section className="flex flex-col gap-3">
-          <h2 className="text-left font-bold text-3xl">Скидки дня</h2>
+          <h2 className="text-center md:text-left font-bold text-3xl">
+            Скидки дня
+          </h2>
           <BooksSlider books={discountedBooks} />
         </section>
 
         <section>
-          <h2 className="text-left font-bold text-3xl">Популярное</h2>
+          <h2 className="text-center md:text-left font-bold text-3xl">
+            Популярное
+          </h2>
           <BooksSlider books={books} />
         </section>
 
         <section>
-          <h2 className="text-left font-bold text-3xl">Жанры</h2>
+          <h2 className="text-center md:text-left font-bold text-3xl">Жанры</h2>
           <div className="flex gap-5 flex-wrap">
             {categories.map((category) => (
               <CategoryCard category={category} key={category.id} />

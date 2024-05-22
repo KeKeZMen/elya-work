@@ -10,7 +10,7 @@ export const FavoriteBook: FC<PropsType> = ({ book }) => {
   return (
     <Link
       href={`/book/${book.id}`}
-      className="border-b last:border-none flex justify-start gap-1 pt-1"
+      className="border-b last:border-none flex justify-start gap-1 py-3"
     >
       <img
         src={`/books/${book.id}.jpg`}

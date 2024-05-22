@@ -7,6 +7,8 @@ type PropsType = {
   addButton?: JSX.Element;
   fullWidth?: boolean;
   margin?: string;
+  padding?: string;
+  fullHeight?: boolean
 };
 
 export const DataTable: FC<PropsType> = ({
@@ -15,6 +17,8 @@ export const DataTable: FC<PropsType> = ({
   addButton,
   fullWidth,
   margin,
+  padding,
+  fullHeight
 }) => {
   return (
     <div
@@ -32,7 +36,13 @@ export const DataTable: FC<PropsType> = ({
           {addButton}
         </div>
 
-        <div className="flex flex-col h-[300px] overflow-y-auto shrink-0">
+        <div
+          className={clsx(
+            "flex flex-col overflow-y-auto shrink-0",
+            fullHeight ? "h-full" : "h-[300px]"
+          )}
+          style={{ padding }}
+        >
           {children}
         </div>
       </div>

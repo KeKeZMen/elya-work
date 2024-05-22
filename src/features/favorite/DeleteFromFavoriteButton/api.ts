@@ -26,7 +26,7 @@ export const deleteFromFavorite = async (bookId: string) => {
 
     return {
       data: {
-        message: "Успешно добавлено!",
+        message: "Успешно удалено!",
       },
     };
   } catch (error) {

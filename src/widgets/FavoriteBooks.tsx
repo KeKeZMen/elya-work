@@ -40,7 +40,7 @@ export const FavoriteBooks = async () => {
   });
 
   return (
-    <DataTable title="Избранное" fullWidth margin="14px 0">
+    <DataTable title="Избранное" fullWidth margin="14px 0" padding="10px" fullHeight>
       {favoriteBooks.length > 0 ? (
         favoriteBooks.map((favorite) => (
           <FavoriteBook book={favorite.book} key={favorite.book.id} />

@@ -4,7 +4,7 @@ import { FaBook } from "react-icons/fa";
 
 export default function Footer() {
   return (
-    <footer className="bg-[#3F3F3F] w-full">
+    <footer className="bg-[#3F3F3F] w-full mt-4">
       <div className="flex flex-col gap-5 md:container md:flex-row text-white p-10 justify-between items-center">
         <ul className="flex flex-col gap-5 md:gap-1">
           <li>О компании</li>

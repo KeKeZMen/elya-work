@@ -99,7 +99,7 @@ export default async function CatalogPage({
         <div className="mt-4 md:mt-0 md:ml-16 md:w-full">
           {books.length > 0 ? (
             <>
-              <div className="flex flex-wrap">
+              <div className="flex flex-wrap gap-4 justify-center md:justify-normal">
                 {books.map((book) => (
                   <BookCard book={book} key={book.id} />
                 ))}
