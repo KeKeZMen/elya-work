@@ -1,5 +1,4 @@
 /node_modules
-next-env.d.ts
 .next
 /public/books
 /public/categories

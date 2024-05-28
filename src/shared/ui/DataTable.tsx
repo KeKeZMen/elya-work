@@ -8,7 +8,8 @@ type PropsType = {
   fullWidth?: boolean;
   margin?: string;
   padding?: string;
-  fullHeight?: boolean
+  fullHeight?: boolean;
+  count?: number;
 };
 
 export const DataTable: FC<PropsType> = ({
@@ -18,7 +19,8 @@ export const DataTable: FC<PropsType> = ({
   fullWidth,
   margin,
   padding,
-  fullHeight
+  fullHeight,
+  count,
 }) => {
   return (
     <div
@@ -32,7 +34,10 @@ export const DataTable: FC<PropsType> = ({
     >
       <div className="flex flex-col">
         <div className="flex justify-between items-center border-b p-3">
-          <h2 className="text-4xl">{title}</h2>
+          <h2 className="text-4xl">
+            {title}
+            {count && `: ${count}`}
+          </h2>
           {addButton}
         </div>
 

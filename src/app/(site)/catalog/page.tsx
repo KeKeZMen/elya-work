@@ -88,7 +88,7 @@ export default async function CatalogPage({
       categoryId: true,
       description: true,
       price: true,
-      discount: true
+      discount: true,
     },
   });
 
@@ -104,9 +104,7 @@ export default async function CatalogPage({
                   <BookCard book={book} key={book.id} />
                 ))}
               </div>
-              {books.length > 10 && (
-                <PaginationNav productsCount={booksCount} />
-              )}
+              {booksCount > 10 && <PaginationNav productsCount={booksCount} />}
             </>
           ) : (
             <p className="text-3xl self-center justify-self-center text-center">

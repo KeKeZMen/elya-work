@@ -129,7 +129,7 @@ const Selects: FC<SelectsPropsType> = ({ onSelect }) => {
   };
 
   return (
-    <>
+    <div className="flex flex-col gap-3">
       {!isLoadingCategories && (
         <Select
           onValueChange={(val) => setSelectedCategory(val)}
@@ -216,7 +216,7 @@ const Selects: FC<SelectsPropsType> = ({ onSelect }) => {
       <Button variant="destructive" onClick={handleResetQuery}>
         Сбросить фильтры
       </Button>
-    </>
+    </div>
   );
 };
 
